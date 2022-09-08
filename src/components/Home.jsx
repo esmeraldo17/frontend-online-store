@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Categorias from './Categorias';
 
 class Home extends Component {
   state = {
@@ -17,6 +18,7 @@ class Home extends Component {
             </p>
           )
         }
+        <Categorias />
       </div>
     );
   }
