@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Categorias from './Categorias';
 import PropTypes from 'prop-types';
 
 class Home extends Component {
@@ -23,6 +24,7 @@ class Home extends Component {
             </p>
           )
         }
+        <Categorias />
         <input
           type="button"
           data-testid="shopping-cart-button"
