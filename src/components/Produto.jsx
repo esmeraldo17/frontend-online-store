@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getProductById } from '../services/api';
+import { getProductById, getItem, setItem } from '../services/api';
 
 class Produto extends Component {
   state = {
@@ -16,6 +16,11 @@ class Produto extends Component {
     };
     fetchProduts();
   }
+
+  addStorage = (obj) => {
+    const sendItem = getItem('produtos') || [];
+    setItem('produtos', [...sendItem, obj]);
+  };
 
   handleClick = () => {
     const { history } = this.props;
@@ -39,6 +44,13 @@ class Produto extends Component {
           onClick={ this.handleClick }
         >
           Carrinho de Compra
+        </button>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => this.addStorage(produto) }
+        >
+          Adicionar ao carrinho
         </button>
       </div>
     );
