@@ -28,6 +28,13 @@ class Home extends Component {
     });
   };
 
+  handleCategorie = async (id) => {
+    const response = await getProductsFromCategoryAndQuery(id);
+    this.setState({
+      lista: response.results,
+    });
+  };
+
   render() {
     const { lista, busca } = this.state;
     return (
@@ -67,7 +74,7 @@ class Home extends Component {
               ))
             )
         }
-        <Categorias />
+        <Categorias handleCategorie={ this.handleCategorie } />
         <input
           type="button"
           data-testid="shopping-cart-button"
