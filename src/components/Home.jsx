@@ -35,6 +35,11 @@ class Home extends Component {
     });
   };
 
+  handleProduct = async (id) => {
+    const { history } = this.props;
+    history.push(`/product/${id}`);
+  };
+
   render() {
     const { lista, busca } = this.state;
     return (
@@ -66,10 +71,20 @@ class Home extends Component {
             ? <p>Nenhum produto foi encontrado</p>
             : (
               lista.map((e) => (
-                <div key={ e.id } data-testid="product">
+                <div
+                  key={ e.id }
+                  data-testid="product"
+                >
                   <p>{e.title}</p>
                   <p>{e.price}</p>
                   <img src={ e.thumbnail } alt={ e.title } />
+                  <button
+                    type="button"
+                    data-testid="product-detail-link"
+                    onClick={ () => this.handleProduct(e.id) }
+                  >
+                    Detalhes
+                  </button>
                 </div>
               ))
             )
