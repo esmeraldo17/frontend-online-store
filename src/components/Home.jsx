@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Categorias from './Categorias';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import { getItem, getProductsFromCategoryAndQuery, setItem } from '../services/api';
 
 class Home extends Component {
   state = {
@@ -38,6 +38,11 @@ class Home extends Component {
   handleProduct = async (id) => {
     const { history } = this.props;
     history.push(`/product/${id}`);
+  };
+
+  addStorage = (obj) => {
+    const sendItem = getItem('produtos') || [];
+    setItem('produtos', [...sendItem, obj]);
   };
 
   render() {
@@ -84,6 +89,13 @@ class Home extends Component {
                     onClick={ () => this.handleProduct(e.id) }
                   >
                     Detalhes
+                  </button>
+                  <button
+                    type="button"
+                    data-testid="product-add-to-cart"
+                    onClick={ () => this.addStorage(e) }
+                  >
+                    Adicionar carrinho
                   </button>
                 </div>
               ))
