@@ -19,7 +19,16 @@ class Produto extends Component {
 
   addStorage = (obj) => {
     const sendItem = getItem('produtos') || [];
-    setItem('produtos', [...sendItem, obj]);
+    const elemento = sendItem.filter((e) => e.id === obj.id);
+    let findElement = elemento.find((e) => e.id === obj.id);
+    if (findElement) {
+      const arrFilter = sendItem.filter((e) => e.id !== obj.id);
+      const quantiAnterior = findElement.quantidade;
+      setItem('produtos', [...arrFilter,
+        findElement = { ...obj, quantidade: quantiAnterior + 1 }]);
+    } else {
+      setItem('produtos', [...sendItem, { ...obj, quantidade: 1 }]);
+    }
   };
 
   handleClick = () => {
