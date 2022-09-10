@@ -25,11 +25,8 @@ class Carrinho extends Component {
     const { lista } = this.state;
     let findElement = lista.find((e) => e.id === obj.id);
     if (findElement.quantidade > 1) {
-      console.log('alou');
       const arrFilter = lista.filter((e) => e.id !== obj.id);
-      console.log(arrFilter);
       const quantiAnterior = findElement.quantidade;
-      console.log(quantiAnterior);
       this.setState({ lista: [...arrFilter,
         findElement = { ...obj, quantidade: quantiAnterior - 1 }] });
       setItem('produtos', [...arrFilter,

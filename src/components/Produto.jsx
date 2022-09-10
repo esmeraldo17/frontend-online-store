@@ -19,8 +19,7 @@ class Produto extends Component {
 
   addStorage = (obj) => {
     const sendItem = getItem('produtos') || [];
-    const elemento = sendItem.filter((e) => e.id === obj.id);
-    let findElement = elemento.find((e) => e.id === obj.id);
+    let findElement = sendItem.find((e) => e.id === obj.id);
     if (findElement) {
       const arrFilter = sendItem.filter((e) => e.id !== obj.id);
       const quantiAnterior = findElement.quantidade;
